@@ -1,0 +1,26 @@
+name: sniffer
+version: 0.1.0
+
+dependencies:
+  pcap:
+    github: maiha/pcap.cr
+    version: 0.2.7
+
+  opts:
+    github: maiha/opts.cr
+    version: 0.1.0
+
+  shard:
+    github: maiha/shard.cr
+    version: 0.1.1
+
+  toml-config:
+      github: maiha/toml-config.cr
+      version: 0.2.0
+
+authors:
+  - maiha <maiha@wota.jp>
+
+crystal: 0.20.0
+
+license: MIT
