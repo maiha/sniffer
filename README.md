@@ -1,4 +1,4 @@
-# sniffer
+# sniffer [![Build Status](https://travis-ci.org/maiha/sniffer.svg?branch=master)](https://travis-ci.org/maiha/sniffer)
 
 sniffer dog
 
@@ -8,7 +8,29 @@ sniffer dog
 sniffer config.toml
 ```
 
+### monitor payload size for redis 3 args command
+
+```toml
+[tcp]
+device     = "lo"
+ports      = [6379]
+
+[input]
+type = "tcp_redis_size"
+commands = ["SET"]
+interval = 1
+```
+
+This reports max payload size on each seconds.
+
+```shell
+
+```
+
+
 ## Development
+
+crystal-0.20.0
 
 - develop and test
 

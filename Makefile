@@ -4,10 +4,10 @@ RELEASE = "--release"
 pwd := $(shell pwd)
 
 .PHONY: all
-all: test
+all: compile spec
 
 .PHONY: test
-test: compile spec
+test: compile spec release
 
 .PHONY: compile
 compile: sniffer

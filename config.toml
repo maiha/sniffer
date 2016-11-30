@@ -1,4 +1,4 @@
-[pcap]
+[tcp]
 device     = "lo"
 snaplen    = 300
 ports      = [6379]
@@ -6,7 +6,8 @@ timeout_ms = 1000
 # filter  = "tcp port 6379"
 
 [input]
-type = "redis_tcp_set_size"  # "redis_tcp_set_size" only
+type = "tcp_redis_size"  # only "tcp_redis_size" in v0.1
+commands = ["SET"]
 interval = 60
 
 [output]

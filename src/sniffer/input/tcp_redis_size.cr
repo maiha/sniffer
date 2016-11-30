@@ -1,17 +1,16 @@
-class Input::RedisTcpSetSize
-  GET_REQUEST  = /\A\*3\r\n\$3\r\n(SET|set)\r\n\$\d+\r\n(.*?)\r\n\$(\d+)\r\n/
-
+class Input::TcpRedisSize
   record Request, time : Time, key : String, size : Int32, src : String
 
   @max : Request?
   @callback_at : Time
 
-  def initialize(@interval : Time::Span, @callback : Request ->)
+  def initialize(@commands : Array(String), @interval : Time::Span, @callback : Request ->)
     @callback_at = Time.now
+    @input_regex = /\A\*3\r\n\$3\r\n(#{@commands.join("|")})\r\n\$\d+\r\n(.*?)\r\n\$(\d+)\r\n/i
   end
 
   def process(pkt)
-    if pkt.tcp_data.to_s =~ GET_REQUEST
+    if pkt.tcp_data.to_s =~ @input_regex
       key  = $2
       size = $3.to_i
 

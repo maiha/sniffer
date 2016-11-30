@@ -10,17 +10,17 @@ class Sniffer::Program
     cap.setfilter(filter)
     STDERR.puts "listening on #{device}, capture size #{snaplen} bytes, filter with '#{filter}'"
     case input_type
-    when "redis_tcp_set_size"
-      run_redis_tcp_set_size(cap)
+    when "tcp_redis_size"
+      run_tcp_redis_size(cap)
     else
       raise "config error: unknown input type: #{input_type}"
     end
   end
 
-  private def run_redis_tcp_set_size(cap)
+  private def run_tcp_redis_size(cap)
     interval = input_interval.second
     format   = output_format
-    callback = ->(req : Input::RedisTcpSetSize::Request) {
+    callback = ->(req : Input::TcpRedisSize::Request) {
       time = req.time.to_s("%Y-%m-%d %H:%M:%S")
       buf  = format.gsub(/\{(.*?)\}/) {
         case key = $1
@@ -33,7 +33,7 @@ class Sniffer::Program
       }
       STDOUT.puts buf
     }
-    input = Input::RedisTcpSetSize.new(interval, callback)
+    input = Input::TcpRedisSize.new(input_commands, interval, callback)
     cap.loop do |pkt|
       if pkt.tcp_data?
         input.process(pkt)
