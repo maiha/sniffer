@@ -20,7 +20,7 @@ class Sniffer::Program
   private def run_tcp_redis_size(cap)
     interval = input_interval.second
     format   = output_format
-    callback = ->(req : Input::TcpRedisSize::Request) {
+    callback = ->(req : Input::TcpRedisSize::Message) {
       time = req.time.to_s("%Y-%m-%d %H:%M:%S")
       buf  = format.gsub(/\{(.*?)\}/) {
         case key = $1
