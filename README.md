@@ -30,7 +30,7 @@ This reports max payload size on each seconds.
 
 ## Development
 
-crystal-0.20.0
+crystal-0.26.1
 
 - develop and test
 
