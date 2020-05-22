@@ -1,0 +1,30 @@
+version: 1.0
+shards:
+  opts:
+    github: maiha/opts.cr
+    version: 0.6.0
+
+  pcap:
+    github: maiha/pcap.cr
+    version: 0.6.1
+
+  pretty:
+    github: maiha/pretty.cr
+    version: 0.9.8
+
+  shard:
+    github: maiha/shard.cr
+    version: 0.3.1
+
+  toml:
+    github: maiha/toml.cr
+    version: 0.6.2
+
+  toml-config:
+    github: maiha/toml-config.cr
+    version: 0.6.1
+
+  var:
+    github: maiha/var.cr
+    version: 1.2.0
+

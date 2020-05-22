@@ -6,8 +6,8 @@ pwd := $(shell pwd)
 .PHONY: all
 all: compile spec
 
-.PHONY: test
-test: compile spec release
+.PHONY: ci
+ci: compile spec release
 
 .PHONY: compile
 compile: sniffer

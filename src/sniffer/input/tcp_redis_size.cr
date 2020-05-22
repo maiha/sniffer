@@ -5,7 +5,7 @@ class Sniffer::Input::TcpRedisSize
   @callback_at : Time
 
   def initialize(@commands : Array(String), @interval : Time::Span, @callback : Message ->)
-    @callback_at = Time.now
+    @callback_at = Pretty.now
     @input_regex = /\A\*3\r\n\$3\r\n(#{@commands.join("|")})\r\n\$\d+\r\n(.*?)\r\n\$(\d+)\r\n/i
   end
 
@@ -23,8 +23,8 @@ class Sniffer::Input::TcpRedisSize
         @max = Message.new(time, key, size, pkt.src)
       end
 
-      if @callback_at < Time.now
-        @callback_at = Time.now + @interval
+      if @callback_at < Pretty.now
+        @callback_at = Pretty.now + @interval
         @callback.call(@max.not_nil!)
         @max = nil
       end

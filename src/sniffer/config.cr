@@ -1,20 +1,20 @@
 module Sniffer::Config
-  delegate str, str?, strs, int, ints, int?, bool, to: @config
+  delegate str, str?, strs, i32, i32s, i32?, bool, to: @config
 
   def device
     str("tcp/device")
   end
   
   def snaplen
-    int("tcp/snaplen")
+    i32("tcp/snaplen")
   end
   
   def timeout_ms
-    int("tcp/timeout_ms")
+    i32("tcp/timeout_ms")
   end
   
   def filter
-    str?("tcp/filter") || ints("tcp/ports").map{|p| "(tcp port #{p})"}.join(" or ")
+    str?("tcp/filter") || i32s("tcp/ports").map{|p| "(tcp port #{p})"}.join(" or ")
   end
   
   def input_type
@@ -26,7 +26,7 @@ module Sniffer::Config
   end
   
   def input_interval
-    int("input/interval")
+    i32("input/interval")
   end
   
   def output_format
